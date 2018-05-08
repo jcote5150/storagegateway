@@ -1,0 +1,1 @@
+Powershell.exe -NoProfile -ExecutionPolicy Bypass -Noninteractive -file .\storage-gateway-post-install.ps1 %*

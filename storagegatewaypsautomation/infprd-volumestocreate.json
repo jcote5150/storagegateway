@@ -1,0 +1,263 @@
+[
+  {
+    "volumesizeinbytes": 17592186044416,
+    "targetname": "aw-shd-gosvr06.gcmlp.com",
+    "snapshot": "yes",
+    "recurrence": "24",
+    "snapshotdescription": "SGW Snapshot for Target Volume aw-shd-gosvr06.gcmlp.com",
+    "cwalarms": [
+      {
+        "AlarmNameSuffix": "Cache-Percent-Used-Per-Volume",
+        "AlarmDescription": "StorageGateway Volume Cache Percent Used Alarm",
+        "MetricName": "CachePercentUsed",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "EvaluationPeriod": 6,
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 90
+      },
+      {
+        "AlarmNameSuffix": "Cache-Percent-Dirty-Per-Volume",
+        "AlarmDescription": "StorageGateway Volume Cache Percent Dirty Alarm",
+        "MetricName": "CachePercentDirty",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "EvaluationPeriod": 6,
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 90
+      }
+    ]
+  },
+  {
+    "volumesizeinbytes": 17592186044416,
+    "targetname": "aw-shd-gosvr03.gcmlp.com",
+    "snapshot": "yes",
+    "recurrence": "24",
+    "snapshotdescription": "SGW Snapshot for Target Volume aw-shd-gosvr03.gcmlp.com",
+    "cwalarms": [
+      {
+        "AlarmNameSuffix": "Cache-Percent-Used-Per-Volume",
+        "AlarmDescription": "StorageGateway Volume Cache Percent Used Alarm",
+        "MetricName": "CachePercentUsed",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "EvaluationPeriod": 6,
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 90
+      },
+      {
+        "AlarmNameSuffix": "Cache-Percent-Dirty-Per-Volume",
+        "AlarmDescription": "StorageGateway Volume Cache Percent Dirty Alarm",
+        "MetricName": "CachePercentDirty",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "EvaluationPeriod": 6,
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 90
+      }
+    ]
+  },
+  {
+    "volumesizeinbytes": 17592186044416,
+    "targetname": "aw-shd-gosvr02.gcmlp.com",
+    "snapshot": "yes",
+    "recurrence": "24",
+    "snapshotdescription": "SGW Snapshot for Target Volume aw-shd-gosvr02.gcmlp.com",
+    "cwalarms": [
+      {
+        "AlarmNameSuffix": "Cache-Percent-Used-Per-Volume",
+        "AlarmDescription": "StorageGateway Volume Cache Percent Used Alarm",
+        "MetricName": "CachePercentUsed",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "EvaluationPeriod": 6,
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 90
+      },
+      {
+        "AlarmNameSuffix": "Cache-Percent-Dirty-Per-Volume",
+        "AlarmDescription": "StorageGateway Volume Cache Percent Dirty Alarm",
+        "MetricName": "CachePercentDirty",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "EvaluationPeriod": 6,
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 90
+      }
+    ]
+  },
+  {
+    "volumesizeinbytes": 17592186044416,
+    "targetname": "aw-shd-gosvr05.gcmlp.com",
+    "snapshot": "yes",
+    "recurrence": "24",
+    "snapshotdescription": "SGW Snapshot for Target Volume aw-shd-gosvr05.gcmlp.com",
+    "cwalarms": [
+      {
+        "AlarmNameSuffix": "Cache-Percent-Used-Per-Volume",
+        "AlarmDescription": "StorageGateway Volume Cache Percent Used Alarm",
+        "MetricName": "CachePercentUsed",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "EvaluationPeriod": 6,
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 90
+      },
+      {
+        "AlarmNameSuffix": "Cache-Percent-Dirty-Per-Volume",
+        "AlarmDescription": "StorageGateway Volume Cache Percent Dirty Alarm",
+        "MetricName": "CachePercentDirty",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "EvaluationPeriod": 6,
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 90
+      }
+    ]
+  },
+  {
+    "volumesizeinbytes": 17592186044416,
+    "targetname": "aw-shd-gosvr04.gcmlp.com",
+    "snapshot": "yes",
+    "recurrence": "24",
+    "snapshotdescription": "SGW Snapshot for Target Volume aw-shd-gosvr04.gcmlp.com",
+    "cwalarms": [
+      {
+        "AlarmNameSuffix": "Cache-Percent-Used-Per-Volume",
+        "AlarmDescription": "StorageGateway Volume Cache Percent Used Alarm",
+        "MetricName": "CachePercentUsed",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "EvaluationPeriod": 6,
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 90
+      },
+      {
+        "AlarmNameSuffix": "Cache-Percent-Dirty-Per-Volume",
+        "AlarmDescription": "StorageGateway Volume Cache Percent Dirty Alarm",
+        "MetricName": "CachePercentDirty",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "EvaluationPeriod": 6,
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 90
+      }
+    ]
+  },
+  {
+    "volumesizeinbytes": 17592186044416,
+    "targetname": "aw-pub-gosvr02.gcmlp.com",
+    "snapshot": "yes",
+    "recurrence": "24",
+    "snapshotdescription": "SGW Snapshot for Target Volume aw-pub-gosvr02.gcmlp.com",
+    "cwalarms": [
+      {
+        "AlarmNameSuffix": "Cache-Percent-Used-Per-Volume",
+        "AlarmDescription": "StorageGateway Volume Cache Percent Used Alarm",
+        "MetricName": "CachePercentUsed",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "EvaluationPeriod": 6,
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 90
+      },
+      {
+        "AlarmNameSuffix": "Cache-Percent-Dirty-Per-Volume",
+        "AlarmDescription": "StorageGateway Volume Cache Percent Dirty Alarm",
+        "MetricName": "CachePercentDirty",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "EvaluationPeriod": 6,
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 90
+      }
+    ]
+  },
+  {
+    "volumesizeinbytes": 17592186044416,
+    "targetname": "aw-pub-hmappgo.gcmlp.com",
+    "snapshot": "yes",
+    "recurrence": "24",
+    "snapshotdescription": "SGW Snapshot for Target Volume aw-pub-hmappgo.gcmlp.com",
+    "cwalarms": [
+      {
+        "AlarmNameSuffix": "Cache-Percent-Used-Per-Volume",
+        "AlarmDescription": "StorageGateway Volume Cache Percent Used Alarm",
+        "MetricName": "CachePercentUsed",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "EvaluationPeriod": 6,
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 90
+      },
+      {
+        "AlarmNameSuffix": "Cache-Percent-Dirty-Per-Volume",
+        "AlarmDescription": "StorageGateway Volume Cache Percent Dirty Alarm",
+        "MetricName": "CachePercentDirty",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "EvaluationPeriod": 6,
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 90
+      }
+    ]
+  },
+  {
+    "volumesizeinbytes": 17592186044416,
+    "targetname": "aw-pub-gosvr01.gcmlp.com",
+    "snapshot": "yes",
+    "recurrence": "24",
+    "snapshotdescription": "SGW Snapshot for Target Volume aw-pub-gosvr01.gcmlp.com",
+    "cwalarms": [
+      {
+        "AlarmNameSuffix": "Cache-Percent-Used-Per-Volume",
+        "AlarmDescription": "StorageGateway Volume Cache Percent Used Alarm",
+        "MetricName": "CachePercentUsed",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "EvaluationPeriod": 6,
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 90
+      },
+      {
+        "AlarmNameSuffix": "Cache-Percent-Dirty-Per-Volume",
+        "AlarmDescription": "StorageGateway Volume Cache Percent Dirty Alarm",
+        "MetricName": "CachePercentDirty",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "EvaluationPeriod": 6,
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 90
+      }
+    ]
+  },
+  {
+    "volumesizeinbytes": 17592186044416,
+    "targetname": "aw-shd-gosvr01.gcmlp.com",
+    "snapshot": "yes",
+    "recurrence": "24",
+    "snapshotdescription": "SGW Snapshot for Target Volume aw-shd-gosvr01.gcmlp.com",
+    "cwalarms": [
+      {
+        "AlarmNameSuffix": "Cache-Percent-Used-Per-Volume",
+        "AlarmDescription": "StorageGateway Volume Cache Percent Used Alarm",
+        "MetricName": "CachePercentUsed",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "EvaluationPeriod": 6,
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 90
+      },
+      {
+        "AlarmNameSuffix": "Cache-Percent-Dirty-Per-Volume",
+        "AlarmDescription": "StorageGateway Volume Cache Percent Dirty Alarm",
+        "MetricName": "CachePercentDirty",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "EvaluationPeriod": 6,
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 90
+      }
+    ]
+  }
+]

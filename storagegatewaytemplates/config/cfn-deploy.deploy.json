@@ -1,0 +1,40 @@
+{
+  "default": {
+    "name": "primarysgw",
+    "parameters": {
+      "InstanceType": "m3.xlarge",
+      "KeyPairName": "cfn-deploy-${lifecycle}",
+      "VolumeCacheSize": "550",
+      "VolumeUploadBufferSize": "500"
+    },
+    "tags": {
+      "Business Entity": "SHD",
+      "Owner": "SEO",
+      "App Team": "INF",
+      "Server Type": "sgw",
+      "Expense Id": "3160"
+    }
+  },
+  "sandbox": {
+    "vpc": "sandbox",
+    "environment": "dev"
+  },
+  "appdev": {
+    "vpc": "appdev",
+    "environment": "dev"
+  },
+  "appprd": {
+    "vpc": "appprd",
+    "environment": "prd",
+    "tags": {
+      "Expense Id": "3161"
+    }
+  },
+  "infprd": {
+    "vpc": "infprd",
+    "environment": "prd",
+    "tags": {
+      "Expense Id": "3161"
+    }
+  }
+}

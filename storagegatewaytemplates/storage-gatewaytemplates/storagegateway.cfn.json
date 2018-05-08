@@ -1,0 +1,375 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+
+  "Description": "Creates a Storage Gateway Instance",
+
+  "Parameters": {
+    "InstanceType": {
+      "Description": "Type of EC2 instance to launch",
+      "Type": "String",
+      "Default": "m3.xlarge",
+      "AllowedValues": [ "m3.xlarge", "m3.2xlarge", "m4.large", "m4.xlarge", "m4.2xlarge", "m4.4xlarge" ],
+      "ConstraintDescription": "must be a valid EC2 instance type."
+    },
+    "KeyPairName": {
+      "Description": "Key Pair to associate with this instance",
+      "Type": "String",
+      "Default": "cfn-deploy-dev"
+    },
+    "AvailabilityZone": {
+      "Description": "Choose which AZ to deploy the Storage Gateway",
+      "Type": "String",
+      "Default": "FailoverAZ",
+      "AllowedValues": [ "PrimaryAZ", "FailoverAZ" ]
+    },
+    "VolumeCacheSize": {
+      "Description": "Size (in GB) of Upload Buffer Volume",
+      "Type": "String",
+      "Default": "550"
+    },
+    "VolumeUploadBufferSize": {
+      "Description": "Size (in GB) of Cache Volume",
+      "Type": "String",
+      "Default": "500"
+    },
+    "NetworkStackName": {
+      "Type": "String",
+      "Default": "${vpc}-network",
+      "Description": "Stack that created required network resourcesto use during deployment."
+    }
+  },
+  "Conditions": {
+    "CreateDRStorageGateway": {
+      "Fn::Equals": [
+        { "Ref": "AvailabilityZone" },
+        "FailoverAZ"
+      ]
+    },
+    "CreateProdStorageGateway": {
+      "Fn::Equals": [
+        { "Ref": "AvailabilityZone" },
+        "PrimaryAZ"
+      ]
+    }
+  },
+
+  "Mappings": {
+    "RegionMap": {
+      "us-east-1": {
+        "AMI": "ami-2f1b2538",
+        "PrimaryAZ": "us-east-1d",
+        "FailoverAZ": "us-east-1b"
+      },
+      "us-east-2": {
+        "AMI": "ami-7b95cf1e",
+        "PrimaryAZ": "us-east-1b",
+        "FailoverAZ": "us-east-1a"
+      },
+      "us-west-1": {
+        "AMI": "ami-14edb974",
+        "PrimaryAZ": "us-west-1b",
+        "FailoverAZ": "us-east-1a"
+      },
+      "us-west-2": {
+        "AMI": "ami-16208e76",
+        "PrimaryAZ": "us-west-2b",
+        "FailoverAZ": "us-west-2a"
+      },
+      "eu-west-1": {
+        "AMI": "ami-1fa3fd6c",
+        "PrimaryAZ": "eu-west-1a",
+        "FailoverAZ": "eu-west-1b"
+      },
+      "eu-central-1": {
+        "AMI": "ami-92d017fd",
+        "PrimaryAZ": "eu-central-1b",
+        "FailoverAZ": "eu-central-1a"
+      },
+      "sa-east-1": {
+        "AMI": "ami-dc0698b0",
+        "PrimaryAZ": "sa-east-1a",
+        "FailoverAZ": "sa-east-1b"
+      },
+      "ap-southeast-1": {
+        "AMI": "ami-c89e33ab",
+        "PrimaryAZ": "ap-southeast-1a",
+        "FailoverAZ": "ap-southeast-1b"
+      },
+      "ap-southeast-2": {
+        "AMI": "ami-71350c12",
+        "PrimaryAZ": "ap-southeast-2a",
+        "FailoverAZ": "ap-southeast-2b"
+      },
+      "ap-northeast-1": {
+        "AMI": "ami-9afb4bfb",
+        "PrimaryAZ": "ap-northeast-1a",
+        "FailoverAZ": "ap-northeast-1b"
+      },
+      "ap-northeast-2": {
+        "AMI": "ami-73e2351d",
+        "PrimaryAZ": "ap-northeast-2a",
+        "FailoverAZ": "ap-northeast-2b"
+      },
+      "ap-south-1": {
+        "AMI": "ami-0f087f60",
+        "PrimaryAZ": "ap-south-1a",
+        "FailoverAZ": "ap-south-1b"
+      }
+    }
+  },
+
+  "Resources": {
+    "StackInfoFunction": { "$ref": "../../../cfn-deploy/cfn-custom-resources/stack-info/StackInfo.cfn.json#/Resources/StackInfoFunction" },
+    "StackInfoRole": { "$ref": "../../../cfn-deploy/cfn-custom-resources/stack-info/StackInfo.cfn.json#/Resources/StackInfoRole" },
+
+    "NetworkInfo": {
+      "Type": "Custom::NetworkInfo",
+      "Properties": {
+        "ServiceToken": { "Fn::GetAtt": [ "StackInfoFunction", "Arn" ] },
+        "Name": {
+          "Ref": "NetworkStackName"
+        }
+      }
+    },
+    "Ec2Instance": {
+      "Type": "AWS::EC2::Instance",
+      "Condition": "CreateProdStorageGateway",
+      "Properties": {
+        "DisableApiTermination": "false",
+        "SubnetId": {
+          "Fn::Select": [
+            "0",
+            { "Fn::GetAtt": [ "NetworkInfo", "ApplicationServerSubnets" ] }
+          ]
+        },
+        "InstanceInitiatedShutdownBehavior": "stop",
+        "EbsOptimized": "true",
+        "KeyName": { "Ref": "KeyPairName" },
+        "SecurityGroupIds": { "Fn::GetAtt": [ "NetworkInfo", "AppServerSecurityGroups" ] },
+        "AvailabilityZone": {
+          "Fn::FindInMap": [
+            "RegionMap",
+            { "Ref": "AWS::Region" },
+            "PrimaryAZ"
+          ]
+        },
+        "InstanceType": { "Ref": "InstanceType" },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "RegionMap",
+            { "Ref": "AWS::Region" },
+            "AMI"
+          ]
+        },
+        "Volumes": [
+          {
+            "Device": "/dev/sdc",
+            "VolumeId": {
+              "Ref": "volumeuploadbuffer"
+            }
+          },
+          {
+            "Device": "/dev/sdd",
+            "VolumeId": {
+              "Ref": "volumecache"
+            }
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": { "Ref": "AWS::StackName" }
+          },
+          {
+            "Key": "Application",
+            "Value": "${name}"
+          },
+          {
+            "Key": "Lifecycle",
+            "Value": "${lifecycle}"
+          },
+          {
+            "Key": "Lifecycle Suffix",
+            "Value": "${lifecycleSuffix}"
+          },
+          {
+            "Key": "Environment",
+            "Value": "${environment}"
+          },
+          {
+            "Key": "Business Entity",
+            "Value": "${tags['Business Entity']}"
+          },
+          {
+            "Key": "App Team",
+            "Value": "${tags['App Team']}"
+          },
+          {
+            "Key": "Owner",
+            "Value": "${tags['Owner']}"
+          },
+          {
+            "Key": "Server Type",
+            "Value": "${tags['Server Type']}"
+          },
+          {
+            "Key": "Expense Id",
+            "Value": "${tags['Expense Id']}"
+          }
+        ]
+      }
+    },
+    "Ec2DRInstance": {
+      "Type": "AWS::EC2::Instance",
+      "Condition": "CreateDRStorageGateway",
+      "Properties": {
+        "DisableApiTermination": "false",
+        "SubnetId": {
+          "Fn::Select": [
+            "1",
+            { "Fn::GetAtt": [ "NetworkInfo", "ApplicationServerSubnets" ] }
+          ]
+        },
+        "InstanceInitiatedShutdownBehavior": "stop",
+        "EbsOptimized": "true",
+        "KeyName": { "Ref": "KeyPairName" },
+        "SecurityGroupIds": { "Fn::GetAtt": [ "NetworkInfo", "AppServerSecurityGroups" ] },
+        "AvailabilityZone": {
+          "Fn::FindInMap": [
+            "RegionMap",
+            { "Ref": "AWS::Region" },
+            "FailoverAZ"
+          ]
+        },
+        "InstanceType": { "Ref": "InstanceType" },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "RegionMap",
+            { "Ref": "AWS::Region" },
+            "AMI"
+          ]
+        },
+        "Volumes": [
+          {
+            "Device": "/dev/sdc",
+            "VolumeId": {
+              "Ref": "volumeuploadbufferDR"
+            }
+          },
+          {
+            "Device": "/dev/sdd",
+            "VolumeId": {
+              "Ref": "volumecacheDR"
+            }
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": { "Ref": "AWS::StackName" }
+          },
+          {
+            "Key": "Application",
+            "Value": "${name}"
+          },
+          {
+            "Key": "Lifecycle",
+            "Value": "${lifecycle}"
+          },
+          {
+            "Key": "Lifecycle Suffix",
+            "Value": "${lifecycleSuffix}"
+          },
+          {
+            "Key": "Environment",
+            "Value": "${environment}"
+          },
+          {
+            "Key": "Business Entity",
+            "Value": "${tags['Business Entity']}"
+          },
+          {
+            "Key": "App Team",
+            "Value": "${tags['App Team']}"
+          },
+          {
+            "Key": "Owner",
+            "Value": "${tags['Owner']}"
+          },
+          {
+            "Key": "Server Type",
+            "Value": "${tags['Server Type']}"
+          },
+          {
+            "Key": "Expense Id",
+            "Value": "${tags['Expense Id']}"
+          }
+        ]
+      }
+    },
+    "volumecache": {
+      "Type": "AWS::EC2::Volume",
+      "Condition": "CreateProdStorageGateway",
+      "Properties": {
+        "AvailabilityZone": {
+          "Fn::FindInMap": [
+            "RegionMap",
+            { "Ref": "AWS::Region" },
+            "PrimaryAZ"
+          ]
+        },
+        "Encrypted": true,
+        "Size": { "Ref": "VolumeCacheSize" },
+        "VolumeType": "gp2"
+      }
+    },
+    "volumeuploadbuffer": {
+      "Type": "AWS::EC2::Volume",
+      "Condition": "CreateProdStorageGateway",
+      "Properties": {
+        "AvailabilityZone": {
+          "Fn::FindInMap": [
+            "RegionMap",
+            { "Ref": "AWS::Region" },
+            "PrimaryAZ"
+          ]
+        },
+        "Encrypted": true,
+        "Size": { "Ref": "VolumeUploadBufferSize" },
+        "VolumeType": "gp2"
+      }
+    },
+    "volumecacheDR": {
+      "Type": "AWS::EC2::Volume",
+      "Condition": "CreateDRStorageGateway",
+      "Properties": {
+        "AvailabilityZone": {
+          "Fn::FindInMap": [
+            "RegionMap",
+            { "Ref": "AWS::Region" },
+            "FailoverAZ"
+          ]
+        },
+        "Encrypted": true,
+        "Size": { "Ref": "VolumeCacheSize" },
+        "VolumeType": "gp2"
+      }
+    },
+    "volumeuploadbufferDR": {
+      "Type": "AWS::EC2::Volume",
+      "Condition": "CreateDRStorageGateway",
+      "Properties": {
+        "AvailabilityZone": {
+          "Fn::FindInMap": [
+            "RegionMap",
+            { "Ref": "AWS::Region" },
+            "FailoverAZ"
+          ]
+        },
+        "Encrypted": true,
+        "Size": { "Ref": "VolumeUploadBufferSize" },
+        "VolumeType": "gp2"
+      }
+    }
+  }
+}

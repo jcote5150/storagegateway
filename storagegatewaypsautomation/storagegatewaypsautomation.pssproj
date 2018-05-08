@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>6CAFC0C6-A428-4d30-A9F9-700E829FEA51</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MyApplication</RootNamespace>
+    <AssemblyName>MyApplication</AssemblyName>
+    <Name>storagegatewaypsautomation</Name>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="addvolumes.bat" />
+    <Compile Include="addVolumesToServers.ps1" />
+    <Compile Include="appdev-volumestocreate.json" />
+    <Compile Include="appprd-volumestocreate.json" />
+    <Compile Include="infprd-volumestocreate.json" />
+    <Compile Include="localserverhealthcheckforSGW.ps1" />
+    <Compile Include="postconfig.bat" />
+    <Compile Include="addvolumes.ps1" />
+    <Compile Include="recovervolumeforserver.ps1" />
+    <Compile Include="recoverVolumesfromSnapshot.bat" />
+    <Compile Include="recoverVolumesfromSnapshot.ps1" />
+    <Compile Include="SGWPolicyForProduction.json" />
+    <Compile Include="sgwremovesnapshots.bat" />
+    <Compile Include="sgwremovesnapshots.ps1" />
+    <Compile Include="storage-gateway-post-install.ps1" />
+    <Compile Include="sumosearch.json" />
+    <Compile Include="tagsgwsnapshots.bat" />
+    <Compile Include="tagsgwsnapshots.ps1" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Target Name="Build" />
+</Project>

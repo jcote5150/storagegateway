@@ -1,0 +1,89 @@
+[
+  {
+    "volumesizeinbytes": 107374182400,
+    "targetname": "jcote-9020.gcmlp.com",
+    "snapshot": "yes",
+    "recurrence": "24",
+    "snapshotdescription": "SGW Snapshot for Target Volume jcote-9020.gcmlp.com",
+    "cwalarms": [
+      {
+        "AlarmNameSuffix": "Cache-Percent-Used-Per-Volume",
+        "AlarmDescription": "StorageGateway Volume Cache Percent Used Alarm",
+        "MetricName": "CachePercentUsed",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "EvaluationPeriod": 6,
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 90
+      },
+      {
+        "AlarmNameSuffix": "Cache-Percent-Dirty-Per-Volume",
+        "AlarmDescription": "StorageGateway Volume Cache Percent Dirty Alarm",
+        "MetricName": "CachePercentDirty",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "EvaluationPeriod": 6,
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 90
+      }
+    ]
+  },
+  {
+    "volumesizeinbytes": 107374182400,
+    "targetname": "test-test.gcmlp.com",
+    "snapshot": "yes",
+    "recurrence": "24",
+    "snapshotdescription": "SGW Snapshot for Target Volume test-test.gcmlp.com",
+    "cwalarms": [
+      {
+        "AlarmNameSuffix": "Cache-Percent-Used-Per-Volume",
+        "AlarmDescription": "StorageGateway Volume Cache Percent Used Alarm",
+        "MetricName": "CachePercentUsed",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "EvaluationPeriod": 6,
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 90
+      },
+      {
+        "AlarmNameSuffix": "Cache-Percent-Dirty-Per-Volume",
+        "AlarmDescription": "StorageGateway Volume Cache Percent Dirty Alarm",
+        "MetricName": "CachePercentDirty",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "EvaluationPeriod": 6,
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 90
+      }
+    ]
+  },
+  {
+    "volumesizeinbytes": 107374182400,
+    "targetname": "test-for-sgw.gcmlp.com",
+    "snapshot": "yes",
+    "recurrence": "24",
+    "snapshotdescription": "SGW Snapshot for Target Volume test-for-sgw.gcmlp.com",
+    "cwalarms": [
+      {
+        "AlarmNameSuffix": "Cache-Percent-Used-Per-Volume",
+        "AlarmDescription": "StorageGateway Volume Cache Percent Used Alarm",
+        "MetricName": "CachePercentUsed",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "EvaluationPeriod": 6,
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 90
+      },
+      {
+        "AlarmNameSuffix": "Cache-Percent-Dirty-Per-Volume",
+        "AlarmDescription": "StorageGateway Volume Cache Percent Dirty Alarm",
+        "MetricName": "CachePercentDirty",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "EvaluationPeriod": 6,
+        "Period": 300,
+        "Statistic": "Average",
+        "Threshold": 90
+      }
+    ]
+  }
+]

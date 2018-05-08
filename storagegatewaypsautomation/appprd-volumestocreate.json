@@ -1,0 +1,23 @@
+[
+  {
+    "volumesizeinbytes": 107374182400,
+    "targetname": "aw-jcote-01.gcmlp.com",
+    "snapshot": "yes",
+    "recurrence": "24",
+    "snapshotdescription": "SGW Snapshot for Target Volume aw-jcote-01.gcmlp.com"
+  },
+  {
+    "volumesizeinbytes": 107374182400,
+    "targetname": "aw-gofast-01.gcmlp.com",
+    "snapshot": "yes",
+    "recurrence": "24",
+    "snapshotdescription": "SGW Snapshot for Target Volume aw-gofast-01.gcmlp.com"
+  },
+  {
+    "volumesizeinbytes": 107374182400,
+    "targetname": "jcote-9020.gcmlp.com",
+    "snapshot": "yes",
+    "recurrence": "12",
+    "snapshotdescription": "SGW Snapshot for Target Volume jcote-9020.gcmlp.com"
+  }
+]
